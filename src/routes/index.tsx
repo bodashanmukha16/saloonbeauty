@@ -173,6 +173,7 @@ function Home() {
   const [galleryFilter, setGalleryFilter] = useState("All");
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [booked, setBooked] = useState(false);
+  const [trialBooked, setTrialBooked] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {

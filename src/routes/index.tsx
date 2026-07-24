@@ -504,6 +504,69 @@ function Home() {
         </div>
       </section>
 
+      {/* Book a Trial */}
+      <section id="trial" className="bg-secondary/30">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-2 lg:px-8">
+          <div>
+            <SectionHeading eyebrow="Bridal Trial" title="Book Your Complimentary Bridal Trial" sub="Experience your dream bridal look before the big day. Our senior artist will style a complete preview and fine-tune every detail with you." align="left" />
+            <div className="mt-8 space-y-4">
+              {[
+                { icon: Sparkles, text: "Complete bridal makeup & hairstyle preview" },
+                { icon: ShieldCheck, text: "Sterilised tools & premium products only" },
+                { icon: Award, text: "One-on-one with a senior bridal artist" },
+                { icon: Phone, text: "Confirmation within 60 minutes" },
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-center gap-4">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[image:var(--gradient-blush)] text-primary"><Icon className="h-5 w-5" /></span>
+                  <span className="text-sm">{text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <form
+            onSubmit={(e) => { e.preventDefault(); setTrialBooked(true); }}
+            className="rounded-3xl bg-card p-7 shadow-elegant"
+          >
+            {trialBooked ? (
+              <div className="grid place-items-center py-10 text-center">
+                <div className="mb-4 grid h-16 w-16 place-items-center rounded-full bg-[image:var(--gradient-rose)] text-white"><Check className="h-8 w-8" /></div>
+                <h3 className="font-display text-2xl font-bold">Trial Booked!</h3>
+                <p className="mt-2 text-sm text-muted-foreground">Thank you — our bridal coordinator will call you within the hour to confirm your slot.</p>
+                <button type="button" onClick={() => setTrialBooked(false)} className="mt-6 text-sm font-medium text-primary underline">Book another trial</button>
+              </div>
+            ) : (
+              <div className="grid gap-4">
+                <input type="hidden" name="service" value="Bridal Trial" />
+                <div className="rounded-2xl border border-primary/20 bg-[image:var(--gradient-blush)]/40 p-4">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-primary">Selected Service</span>
+                  <div className="mt-1 flex items-center gap-2 font-display text-lg font-semibold">
+                    <Sparkles className="h-5 w-5 text-primary" /> Bridal Trial Session
+                  </div>
+                </div>
+                <Input label="Name" name="trial-name" required />
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Input label="Mobile Number" name="trial-mobile" type="tel" required />
+                  <Input label="Email" name="trial-email" type="email" required />
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Input label="Preferred Date" name="trial-date" type="date" required />
+                  <Input label="Preferred Time" name="trial-time" type="time" required />
+                </div>
+                <Select label="Package Interest" name="trial-package" options={["Not sure yet — help me choose", "Silver", "Gold", "Platinum", "Diamond"]} />
+                <label className="grid gap-1.5 text-sm">
+                  <span className="font-medium">Message (optional)</span>
+                  <textarea name="trial-message" rows={3} className="rounded-2xl border border-input bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring" />
+                </label>
+                <button type="submit" className="mt-2 rounded-full bg-[image:var(--gradient-rose)] px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:shadow-elegant">
+                  Confirm Bridal Trial
+                </button>
+                <p className="text-center text-xs text-muted-foreground">No charges for the trial when you book any bridal package.</p>
+              </div>
+            )}
+          </form>
+        </div>
+      </section>
 
       {/* Testimonials */}
       <section className="bg-[image:var(--gradient-blush)]/40">

@@ -77,21 +77,52 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Radiance Beauty Studio — Premium Ladies Beauty Parlour" },
+      {
+        name: "description",
+        content:
+          "Radiance Beauty Studio offers luxurious hair, skin, makeup, bridal and nail services. Book your premium salon experience today.",
+      },
+      { name: "author", content: "Radiance Beauty Studio" },
+      { property: "og:title", content: "Radiance Beauty Studio — Premium Ladies Beauty Parlour" },
+      {
+        property: "og:description",
+        content:
+          "Luxury beauty parlour offering hair, skin, makeup, bridal and nail services. Enhance your natural beauty.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BeautySalon",
+          name: "Radiance Beauty Studio",
+          telephone: "+91-98765-43210",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "12 Rose Avenue, Bandra West",
+            addressLocality: "Mumbai",
+            addressRegion: "MH",
+            postalCode: "400050",
+            addressCountry: "IN",
+          },
+          openingHours: "Mo-Su 10:00-20:00",
+          priceRange: "₹₹",
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,

@@ -173,6 +173,7 @@ function Home() {
   const [galleryFilter, setGalleryFilter] = useState("All");
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [booked, setBooked] = useState(false);
+  const [trialBooked, setTrialBooked] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
@@ -199,7 +200,7 @@ function Home() {
             <span className="font-display text-xl font-bold tracking-tight">Radiance<span className="gradient-text"> Beauty</span></span>
           </a>
           <div className="hidden items-center gap-7 lg:flex">
-            {["Home","About","Services","Gallery","Packages","Contact"].map(l => (
+            {["Home","About","Services","Gallery","Packages","Trial","Contact"].map(l => (
               <a key={l} href={`#${l.toLowerCase()}`} className="text-sm font-medium text-foreground/80 transition hover:text-primary">{l}</a>
             ))}
             <a href="#book" className="rounded-full bg-[image:var(--gradient-rose)] px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition hover:shadow-elegant hover:-translate-y-0.5">Book Now</a>
@@ -211,7 +212,7 @@ function Home() {
         {menuOpen && (
           <div className="glass border-t border-border lg:hidden">
             <div className="flex flex-col gap-1 px-5 py-4">
-              {["Home","About","Services","Gallery","Packages","Contact","Book"].map(l => (
+              {["Home","About","Services","Gallery","Packages","Trial","Contact","Book"].map(l => (
                 <a key={l} onClick={() => setMenuOpen(false)} href={`#${l.toLowerCase()}`} className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-secondary">{l}</a>
               ))}
             </div>
@@ -372,7 +373,7 @@ function Home() {
                 From your first mehendi to the final send-off — our signature bridal packages cover every look, every moment. Start with a complimentary consultation and lock in your date with a trial session.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <a href="#book" className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-rose)] px-7 py-3.5 text-sm font-semibold text-white shadow-elegant transition hover:-translate-y-0.5">
+                <a href="#trial" className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-rose)] px-7 py-3.5 text-sm font-semibold text-white shadow-elegant transition hover:-translate-y-0.5">
                   <Sparkles className="h-4 w-4" /> Book a Trial Session
                   <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </a>
@@ -493,7 +494,7 @@ function Home() {
                 <p className="mt-3 max-w-xl text-white/85">Meet your artist, test your look and personalise every detail — completely free with any Gold, Platinum or Diamond package.</p>
               </div>
               <div className="flex flex-col gap-3 sm:items-end">
-                <a href="#book" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-elegant transition hover:-translate-y-0.5">
+                <a href="#trial" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-elegant transition hover:-translate-y-0.5">
                   Book a Trial <ChevronRight className="h-4 w-4" />
                 </a>
                 <a href="tel:+919876543210" className="text-sm text-white/85 underline-offset-4 hover:underline">or call +91 98765 43210</a>
@@ -503,6 +504,69 @@ function Home() {
         </div>
       </section>
 
+      {/* Book a Trial */}
+      <section id="trial" className="bg-secondary/30">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-2 lg:px-8">
+          <div>
+            <SectionHeading eyebrow="Bridal Trial" title="Book Your Complimentary Bridal Trial" sub="Experience your dream bridal look before the big day. Our senior artist will style a complete preview and fine-tune every detail with you." align="left" />
+            <div className="mt-8 space-y-4">
+              {[
+                { icon: Sparkles, text: "Complete bridal makeup & hairstyle preview" },
+                { icon: ShieldCheck, text: "Sterilised tools & premium products only" },
+                { icon: Award, text: "One-on-one with a senior bridal artist" },
+                { icon: Phone, text: "Confirmation within 60 minutes" },
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-center gap-4">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[image:var(--gradient-blush)] text-primary"><Icon className="h-5 w-5" /></span>
+                  <span className="text-sm">{text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <form
+            onSubmit={(e) => { e.preventDefault(); setTrialBooked(true); }}
+            className="rounded-3xl bg-card p-7 shadow-elegant"
+          >
+            {trialBooked ? (
+              <div className="grid place-items-center py-10 text-center">
+                <div className="mb-4 grid h-16 w-16 place-items-center rounded-full bg-[image:var(--gradient-rose)] text-white"><Check className="h-8 w-8" /></div>
+                <h3 className="font-display text-2xl font-bold">Trial Booked!</h3>
+                <p className="mt-2 text-sm text-muted-foreground">Thank you — our bridal coordinator will call you within the hour to confirm your slot.</p>
+                <button type="button" onClick={() => setTrialBooked(false)} className="mt-6 text-sm font-medium text-primary underline">Book another trial</button>
+              </div>
+            ) : (
+              <div className="grid gap-4">
+                <input type="hidden" name="service" value="Bridal Trial" />
+                <div className="rounded-2xl border border-primary/20 bg-[image:var(--gradient-blush)]/40 p-4">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-primary">Selected Service</span>
+                  <div className="mt-1 flex items-center gap-2 font-display text-lg font-semibold">
+                    <Sparkles className="h-5 w-5 text-primary" /> Bridal Trial Session
+                  </div>
+                </div>
+                <Input label="Name" name="trial-name" required />
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Input label="Mobile Number" name="trial-mobile" type="tel" required />
+                  <Input label="Email" name="trial-email" type="email" required />
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Input label="Preferred Date" name="trial-date" type="date" required />
+                  <Input label="Preferred Time" name="trial-time" type="time" required />
+                </div>
+                <Select label="Package Interest" name="trial-package" options={["Not sure yet — help me choose", "Silver", "Gold", "Platinum", "Diamond"]} />
+                <label className="grid gap-1.5 text-sm">
+                  <span className="font-medium">Message (optional)</span>
+                  <textarea name="trial-message" rows={3} className="rounded-2xl border border-input bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring" />
+                </label>
+                <button type="submit" className="mt-2 rounded-full bg-[image:var(--gradient-rose)] px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:shadow-elegant">
+                  Confirm Bridal Trial
+                </button>
+                <p className="text-center text-xs text-muted-foreground">No charges for the trial when you book any bridal package.</p>
+              </div>
+            )}
+          </form>
+        </div>
+      </section>
 
       {/* Testimonials */}
       <section className="bg-[image:var(--gradient-blush)]/40">

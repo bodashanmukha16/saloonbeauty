@@ -421,6 +421,67 @@ function Home() {
             ))}
           </div>
 
+          {/* Side-by-side package comparison */}
+          <div className="mt-20">
+            <div className="mb-8 text-center">
+              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">Compare Packages</span>
+              <h3 className="mt-2 font-display text-3xl font-bold sm:text-4xl">Find Your Perfect Bridal Plan</h3>
+              <p className="mt-3 mx-auto max-w-2xl text-sm text-muted-foreground">Compare services, add-ons, and pricing side-by-side to choose the package that matches your dream day.</p>
+            </div>
+            <div className="overflow-x-auto rounded-3xl border border-border bg-card shadow-soft">
+              <table className="w-full min-w-[700px] text-sm">
+                <thead>
+                  <tr className="border-b border-border bg-secondary/40">
+                    <th className="px-5 py-4 text-left font-display text-base font-semibold">Features</th>
+                    {packages.map(p => (
+                      <th key={p.name} className={`px-5 py-4 text-center font-display text-base font-semibold ${p.popular ? "text-primary" : ""}`}>
+                        {p.name}
+                        {p.popular && <span className="ml-2 inline-block rounded-full bg-[image:var(--gradient-rose)] px-2 py-0.5 text-[10px] font-semibold text-white">POPULAR</span>}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonFeatures.map((feature, idx) => (
+                    <tr key={feature.key} className={idx % 2 === 0 ? "bg-card" : "bg-secondary/20"}>
+                      <td className="px-5 py-3.5 font-medium text-foreground">{feature.label}</td>
+                      {packages.map(p => {
+                        const value = comparisonMatrix[p.name][feature.key];
+                        return (
+                          <td key={p.name} className={`px-5 py-3.5 text-center ${p.popular ? "bg-primary/[0.03]" : ""}`}>
+                            {typeof value === "boolean" ? (
+                              value ? <Check className="mx-auto h-5 w-5 text-primary" /> : <span className="text-muted-foreground/50">—</span>
+                            ) : (
+                              <span className="text-foreground/90">{value}</span>
+                            )}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                  <tr className="border-t border-border bg-secondary/40">
+                    <td className="px-5 py-4 font-display text-base font-semibold">Starting Price</td>
+                    {packages.map(p => (
+                      <td key={p.name} className={`px-5 py-4 text-center font-display text-lg font-bold ${p.popular ? "text-primary" : "gradient-text"}`}>
+                        ₹{p.price.toLocaleString()}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-4"></td>
+                    {packages.map(p => (
+                      <td key={p.name} className="px-5 py-4 text-center">
+                        <a href="#book" className={`inline-flex items-center justify-center gap-1 rounded-full px-4 py-2 text-xs font-semibold transition ${p.popular ? "bg-[image:var(--gradient-rose)] text-white shadow-soft hover:shadow-elegant" : "border border-primary/40 text-primary hover:bg-secondary"}`}>
+                          Book {p.name}
+                        </a>
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
           {/* Prominent trial CTA banner */}
           <div className="mt-16 overflow-hidden rounded-3xl bg-[image:var(--gradient-rose)] p-8 text-white shadow-elegant sm:p-12">
             <div className="grid gap-6 sm:grid-cols-[1.4fr_1fr] sm:items-center">

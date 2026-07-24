@@ -200,7 +200,7 @@ function Home() {
             <span className="font-display text-xl font-bold tracking-tight">Radiance<span className="gradient-text"> Beauty</span></span>
           </a>
           <div className="hidden items-center gap-7 lg:flex">
-            {["Home","About","Services","Gallery","Packages","Contact"].map(l => (
+            {["Home","About","Services","Gallery","Packages","Trial","Contact"].map(l => (
               <a key={l} href={`#${l.toLowerCase()}`} className="text-sm font-medium text-foreground/80 transition hover:text-primary">{l}</a>
             ))}
             <a href="#book" className="rounded-full bg-[image:var(--gradient-rose)] px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition hover:shadow-elegant hover:-translate-y-0.5">Book Now</a>
@@ -212,7 +212,7 @@ function Home() {
         {menuOpen && (
           <div className="glass border-t border-border lg:hidden">
             <div className="flex flex-col gap-1 px-5 py-4">
-              {["Home","About","Services","Gallery","Packages","Contact","Book"].map(l => (
+              {["Home","About","Services","Gallery","Packages","Trial","Contact","Book"].map(l => (
                 <a key={l} onClick={() => setMenuOpen(false)} href={`#${l.toLowerCase()}`} className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-secondary">{l}</a>
               ))}
             </div>

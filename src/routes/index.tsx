@@ -92,6 +92,65 @@ const packages = [
   { name: "Diamond", price: 59999, popular: false, includes: ["Bridal Airbrush", "Premium Hair", "Saree Draping", "Full Nail Art", "Gold Facial", "2 Trial Sessions", "Pre-bridal Package"] },
 ];
 
+const comparisonFeatures = [
+  { key: "makeup", label: "Makeup Type" },
+  { key: "hairstyle", label: "Hairstyle" },
+  { key: "draping", label: "Saree Draping" },
+  { key: "nails", label: "Nail Art" },
+  { key: "facial", label: "Facial" },
+  { key: "trial", label: "Trial Session" },
+  { key: "location", label: "On-Location Service" },
+  { key: "prebridal", label: "Pre-Bridal Package" },
+  { key: "addons", label: "Add-ons Included" },
+];
+
+const comparisonMatrix: Record<string, Record<string, string | boolean>> = {
+  Silver: {
+    makeup: "Party Makeup",
+    hairstyle: "Basic",
+    draping: false,
+    nails: "Manicure only",
+    facial: "Cleanup",
+    trial: false,
+    location: false,
+    prebridal: false,
+    addons: "None",
+  },
+  Gold: {
+    makeup: "HD Makeup",
+    hairstyle: "Advanced",
+    draping: true,
+    nails: "Mani + Pedi",
+    facial: "Standard Facial",
+    trial: "1 Trial",
+    location: "Within 5 km",
+    prebridal: false,
+    addons: "Saree Draping",
+  },
+  Platinum: {
+    makeup: "Airbrush Makeup",
+    hairstyle: "Premium",
+    draping: true,
+    nails: "Full Nail Art",
+    facial: "Hydra Facial",
+    trial: "1 Trial",
+    location: "Within 15 km",
+    prebridal: false,
+    addons: "Nail Art + Draping",
+  },
+  Diamond: {
+    makeup: "Bridal Airbrush",
+    hairstyle: "Celebrity Style",
+    draping: true,
+    nails: "Luxury Nail Art",
+    facial: "Gold Facial",
+    trial: "2 Trials",
+    location: "Anywhere in Mumbai",
+    prebridal: true,
+    addons: "Pre-Bridal + 2 Trials",
+  },
+};
+
 const testimonials = [
   { name: "Priya Sharma", rating: 5, text: "The bridal makeup was flawless — I've never felt more beautiful. The team is incredibly talented and made my day unforgettable." },
   { name: "Anjali Verma", rating: 5, text: "Best hydra facial in the city! My skin has never looked this radiant. Truly a luxurious experience from start to finish." },

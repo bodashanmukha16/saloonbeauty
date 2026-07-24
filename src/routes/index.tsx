@@ -373,7 +373,7 @@ function Home() {
                 From your first mehendi to the final send-off — our signature bridal packages cover every look, every moment. Start with a complimentary consultation and lock in your date with a trial session.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <a href="#book" className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-rose)] px-7 py-3.5 text-sm font-semibold text-white shadow-elegant transition hover:-translate-y-0.5">
+                <a href="#trial" className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-rose)] px-7 py-3.5 text-sm font-semibold text-white shadow-elegant transition hover:-translate-y-0.5">
                   <Sparkles className="h-4 w-4" /> Book a Trial Session
                   <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </a>

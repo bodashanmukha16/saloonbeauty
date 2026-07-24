@@ -494,7 +494,7 @@ function Home() {
                 <p className="mt-3 max-w-xl text-white/85">Meet your artist, test your look and personalise every detail — completely free with any Gold, Platinum or Diamond package.</p>
               </div>
               <div className="flex flex-col gap-3 sm:items-end">
-                <a href="#book" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-elegant transition hover:-translate-y-0.5">
+                <a href="#trial" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-elegant transition hover:-translate-y-0.5">
                   Book a Trial <ChevronRight className="h-4 w-4" />
                 </a>
                 <a href="tel:+919876543210" className="text-sm text-white/85 underline-offset-4 hover:underline">or call +91 98765 43210</a>
